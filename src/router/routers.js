@@ -1,5 +1,4 @@
 import Main from '@/components/main';
-import parentView from '@/components/parent-view';
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -75,28 +74,6 @@ export default [
           title: '二级-1'
         },
         component: () => import('@/view/multilevel/level-2-1.vue')
-      },
-      {
-        path: 'level_2_2',
-        name: 'level_2_2',
-        meta: {
-          access: ['super_admin'],
-          icon: 'md-funnel',
-          showAlways: true,
-          title: '二级-2'
-        },
-        component: parentView,
-        children: [
-          {
-            path: 'level_2_2_1',
-            name: 'level_2_2_1',
-            meta: {
-              icon: 'md-funnel',
-              title: '三级'
-            },
-            component: () => import('@/view/multilevel/level-2-2/level-3-1.vue')
-          }
-        ]
       },
       {
         path: 'level_2_3',
