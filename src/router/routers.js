@@ -114,5 +114,5 @@ export default [
         component: () => import('@/view/error-page/error-logger.vue')
       }
     ]
-  },
+  }
 ]

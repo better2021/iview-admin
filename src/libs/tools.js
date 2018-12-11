@@ -1,9 +1,9 @@
 export const forEach = (arr, fn) => {
   if (!arr.length || !fn) return
   let i = -1
-  let len = arr.length
+  const len = arr.length
   while (++i < len) {
-    let item = arr[i]
+    const item = arr[i]
     fn(item, i, arr)
   }
 }
@@ -14,9 +14,9 @@ export const forEach = (arr, fn) => {
  * @description 得到两个数组的交集, 两个数组的元素为数值或字符串
  */
 export const getIntersection = (arr1, arr2) => {
-  let len = Math.min(arr1.length, arr2.length)
+  const len = Math.min(arr1.length, arr2.length)
   let i = -1
-  let res = []
+  const res = []
   while (++i < len) {
     const item = arr2[i]
     if (arr1.indexOf(item) > -1) res.push(item)
@@ -46,7 +46,7 @@ export const hasOneOf = (targetarr, arr) => {
  * @param {String|Number} value 要验证的字符串或数值
  * @param {*} validList 用来验证的列表
  */
-export function oneOf (value, validList) {
+export function oneOf(value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
       return true
@@ -95,8 +95,11 @@ const getDate = (timeStamp, startType) => {
   const minutes = getHandledValue(d.getMinutes())
   const second = getHandledValue(d.getSeconds())
   let resStr = ''
-  if (startType === 'year') resStr = year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + second
-  else resStr = month + '-' + date + ' ' + hours + ':' + minutes
+  if (startType === 'year') {
+    resStr = year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + second
+  } else {
+    resStr = month + '-' + date + ' ' + hours + ':' + minutes
+  }
   return resStr
 }
 
@@ -108,7 +111,7 @@ export const getRelativeTime = timeStamp => {
   // 判断当前传入的时间戳是秒格式还是毫秒
   const IS_MILLISECOND = isMillisecond(timeStamp)
   // 如果是毫秒格式则转为秒格式
-  if (IS_MILLISECOND) Math.floor(timeStamp /= 1000)
+  if (IS_MILLISECOND) Math.floor((timeStamp /= 1000))
   // 传入的时间戳可以是数值或字符串类型，这里统一转为数值类型
   timeStamp = Number(timeStamp)
   // 获取当前时间时间戳
@@ -140,7 +143,7 @@ export const getRelativeTime = timeStamp => {
  */
 export const getExplorer = () => {
   const ua = window.navigator.userAgent
-  const isExplorer = (exp) => {
+  const isExplorer = exp => {
     return ua.indexOf(exp) > -1
   }
   if (isExplorer('MSIE')) return 'IE'
@@ -153,15 +156,15 @@ export const getExplorer = () => {
 /**
  * @description 绑定事件 on(element, event, handler)
  */
-export const on = (function () {
+export const on = (function() {
   if (document.addEventListener) {
-    return function (element, event, handler) {
+    return function(element, event, handler) {
       if (element && event && handler) {
         element.addEventListener(event, handler, false)
       }
     }
   } else {
-    return function (element, event, handler) {
+    return function(element, event, handler) {
       if (element && event && handler) {
         element.attachEvent('on' + event, handler)
       }
@@ -172,15 +175,15 @@ export const on = (function () {
 /**
  * @description 解绑事件 off(element, event, handler)
  */
-export const off = (function () {
+export const off = (function() {
   if (document.removeEventListener) {
-    return function (element, event, handler) {
+    return function(element, event, handler) {
       if (element && event) {
         element.removeEventListener(event, handler, false)
       }
     }
   } else {
-    return function (element, event, handler) {
+    return function(element, event, handler) {
       if (element && event) {
         element.detachEvent('on' + event, handler)
       }
@@ -210,6 +213,5 @@ export const objEqual = (obj1, obj2) => {
   const keysArr2 = Object.keys(obj2)
   if (keysArr1.length !== keysArr2.length) return false
   else if (keysArr1.length === 0 && keysArr2.length === 0) return true
-  /* eslint-disable-next-line */
-  else return !keysArr1.some(key => obj1[key] != obj2[key])
+  /* eslint-disable-next-line */ else return !keysArr1.some(key => obj1[key] != obj2[key])
 }

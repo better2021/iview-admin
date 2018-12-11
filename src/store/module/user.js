@@ -39,7 +39,7 @@ export default {
         localSave('u_p', `${username}_${password}`)
         commit('user/setToken', res.data.token.trim())
         commit('user/setUserInfo', userInfo)
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       }
     },

@@ -8,9 +8,9 @@ const addMsg = errorInfo => {
     request: { responseURL },
     data: { message }
   } = errorInfo
-  let info = {
-    type: 'error',   
-    code: status,   
+  const info = {
+    type: 'error',
+    code: status,
     mes: statusText,
     url: responseURL,
     message
@@ -19,7 +19,7 @@ const addMsg = errorInfo => {
 }
 
 class HttpRequest {
-  constructor(baseUrl = baseURL) {
+  constructor(baseUrl) {
     this.baseUrl = baseUrl
     this.queue = {}
   }
