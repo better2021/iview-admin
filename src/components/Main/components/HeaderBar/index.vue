@@ -8,9 +8,9 @@
   </div>
 </template>
 <script>
-import siderTrigger from './sider-trigger'
-import customBreadCrumb from './custom-bread-crumb'
-import './header-bar.less'
+import siderTrigger from './SiderTrigger'
+import customBreadCrumb from './CustomBreadCrumb'
+import './index.less'
 export default {
   name: 'HeaderBar',
   components: {
@@ -21,12 +21,12 @@ export default {
     collapsed: Boolean
   },
   computed: {
-    breadCrumbList () {
+    breadCrumbList() {
       return this.$store.state.app.breadCrumbList
     }
   },
   methods: {
-    handleCollpasedChange (state) {
+    handleCollpasedChange(state) {
       this.$emit('on-coll-change', state)
     }
   }

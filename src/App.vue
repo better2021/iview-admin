@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ErrorMsg from '_c/error-msg'
+import ErrorMsg from '_c/ErrorMsg'
 export default {
   name: 'App',
   components: {

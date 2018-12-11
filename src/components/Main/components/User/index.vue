@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import './user.less'
+import './index.less'
 import { mapMutations } from 'vuex'
 export default {
   name: 'User',

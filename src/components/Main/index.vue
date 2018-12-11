@@ -63,18 +63,18 @@
   </Layout>
 </template>
 <script>
-import SideMenu from './components/side-menu'
-import HeaderBar from './components/header-bar'
-import TagsNav from './components/tags-nav'
-import User from './components/user'
-import Fullscreen from './components/fullscreen'
-import Language from './components/language'
-import ErrorStore from './components/error-store'
+import SideMenu from './components/SideMenu'
+import HeaderBar from './components/HeaderBar'
+import TagsNav from './components/TagsNav'
+import User from './components/User'
+import Fullscreen from './components/FullScreen'
+import Language from './components/Language'
+import ErrorStore from './components/ErrorStore'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.jpg'
-import './main.less'
+import './index.less'
 export default {
   name: 'Main',
   components: {

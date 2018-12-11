@@ -1,4 +1,4 @@
-import Main from '@/components/main'
+import Main from '@/components/Main'
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:

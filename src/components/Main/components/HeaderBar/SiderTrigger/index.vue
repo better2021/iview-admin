@@ -1,5 +1,7 @@
 <template>
-  <a @click="handleChange" type="text" :class="['sider-trigger-a', collapsed ? 'collapsed' : '']"><Icon :type="icon" :size="size" /></a>
+  <a @click="handleChange" type="text" :class="['sider-trigger-a', collapsed ? 'collapsed' : '']">
+    <Icon :type="icon" :size="size"/>
+  </a>
 </template>
 <script>
 export default {
@@ -16,12 +18,12 @@ export default {
     }
   },
   methods: {
-    handleChange () {
+    handleChange() {
       this.$emit('on-change', !this.collapsed)
     }
   }
 }
 </script>
 <style lang="less">
-@import './sider-trigger.less';
+@import './index.less';
 </style>

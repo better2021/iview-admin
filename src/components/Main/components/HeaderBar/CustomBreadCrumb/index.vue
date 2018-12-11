@@ -10,8 +10,8 @@
 </template>
 <script>
 import { showTitle } from '@/libs/util'
-import CommonIcon from '_c/common-icon'
-import './custom-bread-crumb.less'
+import CommonIcon from '_c/CommonIcon'
+import './index.less'
 export default {
   name: 'customBreadCrumb',
   components: {
@@ -32,13 +32,13 @@ export default {
     }
   },
   methods: {
-    showTitle (item) {
+    showTitle(item) {
       return showTitle(item, this)
     },
-    isCustomIcon (iconName) {
+    isCustomIcon(iconName) {
       return iconName.indexOf('_') === 0
     },
-    getCustomIconName (iconName) {
+    getCustomIconName(iconName) {
       return iconName.slice(1)
     }
   }
