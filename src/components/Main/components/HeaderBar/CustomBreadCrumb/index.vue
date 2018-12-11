@@ -1,8 +1,8 @@
 <template>
   <div class="custom-bread-crumb">
     <Breadcrumb :style="{fontSize: `${fontSize}px`}">
-      <BreadcrumbItem v-for="item in list" :to="item.to" :key="`bread-crumb-${item.name}`">
-        <common-icon style="margin-right: 4px;" :type="item.icon || ''"/>
+      <BreadcrumbItem v-for="item in list" :key="`bread-crumb-${item.name}`" :to="item.to">
+        <CommonIcon style="margin-right: 4px;" :type="item.icon || ''" />
         {{ showTitle(item) }}
       </BreadcrumbItem>
     </Breadcrumb>
@@ -13,7 +13,7 @@ import { showTitle } from '@/libs/util'
 import CommonIcon from '_c/CommonIcon'
 import './index.less'
 export default {
-  name: 'customBreadCrumb',
+  name: 'CustomBreadCrumb',
   components: {
     CommonIcon
   },

@@ -7,22 +7,22 @@
             <FormItem prop="username">
               <Input v-model="form.username" placeholder="请输入用户名">
                 <span slot="prepend">
-                  <Icon :size="16" type="ios-person"></Icon>
+                  <Icon :size="16" type="ios-person" />
                 </span>
               </Input>
             </FormItem>
             <FormItem prop="password">
-              <Input type="password" v-model="form.password" placeholder="请输入密码">
+              <Input v-model="form.password" type="password" placeholder="请输入密码">
                 <span slot="prepend">
-                  <Icon :size="14" type="md-lock"></Icon>
+                  <Icon :size="14" type="md-lock" />
                 </span>
               </Input>
             </FormItem>
             <FormItem prop="authcode">
-              <Input class="authcode" v-model="form.authcode" placeholder="请输入验证码">
+              <Input v-model="form.authcode" class="authcode" placeholder="请输入验证码">
                 <div slot="prepend">
                   <div class="authcodeBox">
-                    <Spin fix v-if="loading.authcode"></Spin>
+                    <Spin v-if="loading.authcode" fix />
                     <div class="con" @click="getAuthCode">
                       <img v-if="authcode.image" :src="authcode.image" alt>
                       <span v-else>点击获取验证码</span>
@@ -33,12 +33,14 @@
             </FormItem>
             <FormItem class="login-box">
               <Button
-                :loading="loading.login"
-                @click="handleSubmit"
                 type="primary"
                 long
                 clo
-              >{{loading.login ? '登录中' : '登录'}}</Button>
+                :loading="loading.login"
+                @click="handleSubmit"
+              >
+              {{ loading.login ? '登录中' : '登录' }}
+              </Button>
             </FormItem>
           </Form>
         </div>
@@ -52,7 +54,7 @@ import { mapActions } from 'vuex'
 export default {
   name: 'Login',
   data() {
-    //缓存的账户信息
+    // 缓存的账户信息
     const [username, password] = window.localStorage.getItem('u_p')
       ? window.localStorage.getItem('u_p').split('_')
       : ['', '']
@@ -87,7 +89,7 @@ export default {
     // 获取验证码
     async getAuthCode() {
       this.loading.authcode = true
-      let res = await this.$axios.request({
+      const res = await this.$axios.request({
         url: '/admin/login/imagecode',
         method: 'GET'
       })

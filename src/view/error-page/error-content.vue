@@ -6,7 +6,7 @@
         <h4>{{ code }}</h4>
         <h5>{{ desc }}</h5>
       </div>
-      <back-btn-group class="back-btn-group"></back-btn-group>
+      <BackBtnGroup class="back-btn-group"></BackBtnGroup>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@
 import './error.less'
 import backBtnGroup from './back-btn-group.vue'
 export default {
-  name: 'error_content',
+  name: 'ErrorContent',
   components: {
     backBtnGroup
   },

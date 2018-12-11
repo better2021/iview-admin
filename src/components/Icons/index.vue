@@ -1,7 +1,6 @@
 <template>
-  <i :class="`iconfont icon-${type}`" :style="styles"></i>
+  <i :class="`iconfont icon-${type}`" :style="styles" />
 </template>
-
 <script>
 export default {
   name: 'Icons',
@@ -20,7 +19,7 @@ export default {
     }
   },
   computed: {
-    styles () {
+    styles() {
       return {
         fontSize: `${this.size}px`,
         color: this.color
@@ -31,5 +30,4 @@ export default {
 </script>
 
 <style>
-
 </style>

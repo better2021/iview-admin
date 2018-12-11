@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <ErrorMsg/>
-    <router-view/>
+    <ErrorMsg />
+    <router-view />
   </div>
 </template>
 

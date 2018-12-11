@@ -198,7 +198,7 @@ export const off = (function() {
 export const hasKey = (obj, key) => {
   if (key) return key in obj
   else {
-    let keysArr = Object.keys(obj)
+    const keysArr = Object.keys(obj)
     return keysArr.length
   }
 }
@@ -213,5 +213,5 @@ export const objEqual = (obj1, obj2) => {
   const keysArr2 = Object.keys(obj2)
   if (keysArr1.length !== keysArr2.length) return false
   else if (keysArr1.length === 0 && keysArr2.length === 0) return true
-  /* eslint-disable-next-line */ else return !keysArr1.some(key => obj1[key] != obj2[key])
+  /* eslint-disable-next-line */ else return !keysArr1.some(key => obj1[key] !== obj2[key])
 }

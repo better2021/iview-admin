@@ -27,8 +27,8 @@ export default [
   },
   {
     path: '/',
-    name: 'data',
-    redirect: '/data',
+    name: 'home',
+    redirect: '/home',
     component: Main,
     children: [
       {

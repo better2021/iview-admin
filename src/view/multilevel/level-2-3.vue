@@ -3,6 +3,6 @@
 </template>
 <script>
 export default {
-  name: 'level_2_3'
+  name: 'Level23'
 }
 </script>

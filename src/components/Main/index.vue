@@ -9,7 +9,7 @@
       class="left-sider"
       :style="{overflow: 'hidden'}"
     >
-      <side-menu
+      <SideMenu
         accordion
         ref="sideMenu"
         :active-name="$route.name"
@@ -19,14 +19,14 @@
       >
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <div class="logo-con">
-          <img v-show="!collapsed" :src="maxLogo" key="max-logo">
-          <img v-show="collapsed" :src="minLogo" key="min-logo">
+          <img v-show="!collapsed" key="max-logo" :src="maxLogo">
+          <img v-show="collapsed" key="min-logo" :src="minLogo">
         </div>
-      </side-menu>
+      </SideMenu>
     </Sider>
     <Layout>
       <Header class="header-con">
-        <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
+        <HeaderBar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
           <user :user-info="userInfo"/>
           <language
             v-if="$config.useI18n"
@@ -34,21 +34,21 @@
             style="margin-right: 10px;"
             :lang="local"
           />
-          <error-store
+          <ErrorStore
             v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader"
             :has-read="hasReadErrorPage"
             :count="errorList.length"
-          ></error-store>
+          ></ErrorStore>
           <fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>
-        </header-bar>
+        </HeaderBar>
       </Header>
       <Content class="main-content-con">
         <Layout class="main-layout-con">
           <div class="tag-nav-wrapper">
-            <tags-nav
+            <TagsNav
               :value="$route"
-              @input="handleClick"
               :list="tagNavList"
+              @input="handleClick"
               @on-close="handleCloseTag"
             />
           </div>
