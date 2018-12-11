@@ -1,0 +1,77 @@
+#Header {
+  height: 100%;
+  width: 100%;
+  .routeName {
+    float: left;
+    min-width: 300px;
+    padding-left: 20px;
+    font-size: 26px;
+  }
+  .quickSel {
+    float: left;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 200px;
+    margin-left: 50px;
+    /deep/.ivu-input {
+      border: none;
+      &:focus,
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
+  .quickHint {
+    float: right;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    & > li {
+      margin-right: 30px;
+      cursor: pointer;
+    }
+  }
+  .setting {
+    position: fixed;
+    top: 60px;
+    right: -201px;
+    z-index: 1000;
+    background-color: #ffffff;
+    padding: 10px;
+    width: 200px;
+    min-height: 887px;
+    max-height: 887px;
+    border: 1px solid #dfe6ec;
+    color: #48576a;
+    box-shadow: -5px 8px 19px #d3dce6;
+    transition: all 0.3s ease-in-out;
+    h1 {
+      font-weight: normal;
+      font-size: 16px;
+      height: 35px;
+      line-height: 35px;
+      border-bottom: 1px solid #dfe6ec;
+    }
+    & > ul {
+      li {
+        & > h3 {
+          min-width: 60px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .animation {
+    right: 1px;
+    transition: all 0.3s ease-in-out;
+  }
+  .set-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
