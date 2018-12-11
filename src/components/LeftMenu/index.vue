@@ -1,7 +1,6 @@
 <template>
   <div id="LeftMenu">
     <ul class="menu">
-      <!-- 首页 -->
       <li class="first-item" :class="{'active':$route.path =='/'}" @click="goTo('/')">
         <i class="iconfont icon-caidanguanli"></i>
         <span>总览</span>

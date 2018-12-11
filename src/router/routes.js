@@ -15,6 +15,20 @@ const routes = [
     component: () => import('../view/login')
   },
   {
+    path: '/pageOne',
+    name: '页面一',
+    pid: 1,
+    id: 1,
+    component: () => import('../view/pageOne')
+  },
+  {
+    path: '/pageTwo',
+    name: '页面二',
+    pid: 1,
+    id: 2,
+    component: () => import('../view/pageTwo')
+  },
+  {
     path: '*',
     name: '404',
     component: () => import('../components/NoFound')
@@ -23,7 +37,7 @@ const routes = [
 
 const menuConfig = {
   1: {
-    name: '影片',
+    name: '首页',
     icon: 'iconfont icon-dianpudanganwangzhan'
   }
 };
