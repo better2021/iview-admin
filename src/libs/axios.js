@@ -55,8 +55,9 @@ class HttpRequest {
     instance.interceptors.response.use(
       res => {
         this.destroy(url)
-        const { data, status } = res
-        return { data, status }
+        const response = res.data
+        response.status = res.status
+        return response
       },
       error => {
         this.destroy(url)
