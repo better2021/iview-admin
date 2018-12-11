@@ -8,7 +8,6 @@ export default {
   computed: {
     errorList() {
       const errorList = this.$store.state.app.errorList
-      console.log('errorList-->', errorList)
       if (errorList.length) {
         const error = errorList[0]
         this.$Message.error(error.message)
