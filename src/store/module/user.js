@@ -1,14 +1,19 @@
 import axios from '@/libs/api.request'
-import { setToken, getToken, localSave } from '@/libs/util'
+import { setToken, getToken, localSave, localRead } from '@/libs/util'
+
+const userInfo = localRead('userInfo')
 
 export default {
   state: {
-    userInfo: {}, // 用户信息
+    userInfo: userInfo ? JSON.parse(userInfo) : {}, // 用户信息
     access: [], // 权限信息
     token: getToken()
   },
   mutations: {
-    ['user/setUserInfo']() {},
+    ['user/setUserInfo'](state, userInfo) {
+      state.userInfo = userInfo
+      localSave('userInfo', JSON.stringify(userInfo))
+    },
     ['user/setToken'](state, token) {
       state.token = token
       setToken(token)
@@ -29,14 +34,15 @@ export default {
         url: '/admin/login',
         data: req
       })
-      console.log('res-->', res)
+      const userInfo = res.data.list
       localSave('u_p', `${username}_${password}`)
       commit('user/setToken', res.data.token.trim())
-      commit('user/setUserInfo', JSON.stringify(res.data.list))
+      commit('user/setUserInfo', userInfo)
     },
     // 退出登录
     async ['user/handleLogOut']({ state, commit }) {
       commit('user/setToken', '')
+      commit('user/setUserInfo', {})
     }
   }
 }

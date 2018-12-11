@@ -1,7 +1,8 @@
 <template>
   <div class="user-avator-dropdown">
     <Dropdown @on-click="handleClick">
-      <Avatar :src="userAvator"/>
+      <Avatar :src="userInfo.avatar || avatar"/>
+      <span class="user-name">{{userInfo.username}}</span>
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
       <DropdownMenu slot="list">
         <DropdownItem name="logout">退出登录</DropdownItem>
@@ -11,14 +12,23 @@
 </template>
 
 <script>
-import './index.less'
 import { mapActions } from 'vuex'
+import './index.less'
+import avatar from '@/assets/images/avatar.jpg'
 export default {
   name: 'User',
   props: {
-    userAvator: {
-      type: String,
-      default: ''
+    userInfo: {
+      type: Object,
+      default: {
+        avater: '',
+        username: ''
+      }
+    }
+  },
+  data() {
+    return {
+      avatar
     }
   },
   methods: {

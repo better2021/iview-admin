@@ -27,7 +27,7 @@
     <Layout>
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <user :user-avator="userAvator"/>
+          <user :user-info="userInfo"/>
           <language
             v-if="$config.useI18n"
             @on-lang-change="setLocal"
@@ -102,8 +102,8 @@ export default {
     tagRouter() {
       return this.$store.state.app.tagRouter
     },
-    userAvator() {
-      return this.$store.state.user.avatorImgPath
+    userInfo() {
+      return this.$store.state.user.userInfo
     },
     cacheList() {
       return this.tagNavList.length
