@@ -12,7 +12,7 @@
 
 <script>
 import './index.less'
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   name: 'User',
   props: {
@@ -22,7 +22,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
+    ...mapActions({
       handleLogOut: 'user/handleLogOut'
     }),
     handleClick(name) {
