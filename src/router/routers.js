@@ -23,25 +23,19 @@ export default [
       title: 'Login - 登录',
       hideInMenu: true
     },
-    component: () => import('@/view/login/login.vue')
+    component: () => import('@/view/login')
   },
   {
     path: '/',
-    name: 'home',
-    redirect: '/home',
+    name: 'data',
+    redirect: '/data',
     component: Main,
-    meta: {
-      hideInMenu: true,
-      notCache: true
-    },
     children: [
       {
         path: '/home',
         name: 'home',
         meta: {
-          hideInMenu: true,
           title: '首页',
-          notCache: true,
           icon: 'md-home'
         },
         component: () => import('@/view/home')
