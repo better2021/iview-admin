@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 // import { Spin } from 'iview'
-const addError = errorInfo => {
+const addMsg = errorInfo => {
   const {
     statusText,
     status,
@@ -9,12 +9,13 @@ const addError = errorInfo => {
     data: { message }
   } = errorInfo
   let info = {
-    code: status,
+    type: 'error',   
+    code: status,   
     mes: statusText,
     url: responseURL,
     message
   }
-  store.commit('app/addError', info)
+  store.commit('app/addMsg', info)
 }
 
 class HttpRequest {
@@ -62,7 +63,7 @@ class HttpRequest {
       },
       error => {
         this.destroy(url)
-        addError(error.response)
+        addMsg(error.response)
         return Promise.reject(error)
       }
     )

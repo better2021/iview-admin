@@ -31,12 +31,12 @@ export default {
     tagNavList: [],
     homeRoute: getHomeRoute(routers, homeName),
     local: localRead('local'),
-    errorList: [],
+    msgList: [],
     hasReadErrorPage: false
   },
   getters: {
     menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
-    errorCount: state => state.errorList.length
+    errorList: state => state.msgList.filter(o => o.type === 'error')
   },
   mutations: {
     ['app/setBreadCrumb'](state, route) {
@@ -85,11 +85,11 @@ export default {
       localSave('local', lang)
       state.local = lang
     },
-    ['app/addError'](state, error) {
-      state.errorList.push(error)
+    ['app/addMsg'](state, error) {
+      state.msgList.push(error)
     },
-    ['app/removeError'](state) {
-      state.errorList.shift()
+    ['app/removeMsg'](state) {
+      state.msgList.shift()
     },
   }
 }

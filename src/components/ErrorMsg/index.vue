@@ -1,19 +1,21 @@
 <template>
-  <div id="Msg" v-if="errorList.length"></div>
+  <div id="Msg" v-if="msgList.length"></div>
 </template>
 
 <script>
 export default {
   name: 'Msg',
   computed: {
-    errorList() {
-      const errorList = this.$store.state.app.errorList
-      if (errorList.length) {
-        const error = errorList[0]
-        this.$Message.error(error.message)
-        this.$store.commit('app/removeError')
+    msgList() {
+      const msgList = this.$store.state.app.msgList
+      if (msgList.length) {
+        const msg = msgList[0]
+        if (msg.type === 'error') {
+          this.$Message.error(msg.message)
+        }
+        this.$store.commit('app/removeMsg')
       }
-      return errorList
+      return msgList
     }
   }
 }

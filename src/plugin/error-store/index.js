@@ -10,7 +10,7 @@ export default {
         url: window.location.href
       }
       Vue.nextTick(() => {
-        store.commit('app/addError', info)
+        store.commit('app/addMsg', info)
       })
     }
   }

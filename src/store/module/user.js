@@ -29,15 +29,19 @@ export default {
         code: authcode,
         token
       }
-      const res = await axios.request({
-        method: 'POST',
-        url: '/admin/login',
-        data: req
-      })
-      const userInfo = res.data.list
-      localSave('u_p', `${username}_${password}`)
-      commit('user/setToken', res.data.token.trim())
-      commit('user/setUserInfo', userInfo)
+      try {
+        const res = await axios.request({
+          method: 'POST',
+          url: '/admin/login',
+          data: req
+        })
+        const userInfo = res.data.list
+        localSave('u_p', `${username}_${password}`)
+        commit('user/setToken', res.data.token.trim())
+        commit('user/setUserInfo', userInfo)
+      } catch(err) {
+        console.log(err)
+      }
     },
     // 退出登录
     async ['user/handleLogOut']({ state, commit }) {

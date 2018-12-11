@@ -94,5 +94,25 @@ export default [
       hideInMenu: true
     },
     component: () => import('@/view/error-page/404.vue')
-  }
+  },
+  {
+    path: '/error_logger',
+    name: 'error_logger',
+    meta: {
+      hideInBread: true,
+      hideInMenu: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'error_logger_page',
+        name: 'error_logger_page',
+        meta: {
+          icon: 'ios-bug',
+          title: '错误收集'
+        },
+        component: () => import('@/view/error-page/error-logger.vue')
+      }
+    ]
+  },
 ]

@@ -37,7 +37,7 @@
           <error-store
             v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader"
             :has-read="hasReadErrorPage"
-            :count="errorCount"
+            :count="errorList.length"
           ></error-store>
           <fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>
         </header-bar>
@@ -95,7 +95,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['errorCount']),
+    ...mapGetters(['errorList']),
     tagNavList() {
       return this.$store.state.app.tagNavList
     },
