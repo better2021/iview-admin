@@ -12,7 +12,7 @@
 
 <script>
 import './user.less'
-import { mapActions } from 'vuex'
+import { mapMutations } from 'vuex'
 export default {
   name: 'User',
   props: {
@@ -22,16 +22,15 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'handleLogOut'
-    ]),
-    handleClick (name) {
+    ...mapMutations({
+      handleLogOut: 'user/handleLogOut'
+    }),
+    handleClick(name) {
       switch (name) {
         case 'logout':
-          this.handleLogOut().then(() => {
-            this.$router.push({
-              name: 'login'
-            })
+          this.handleLogOut('')
+          this.$router.push({
+            name: 'login'
           })
           break
       }

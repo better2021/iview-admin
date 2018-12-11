@@ -1,19 +1,20 @@
 import axios from 'axios'
 import store from '@/store'
 // import { Spin } from 'iview'
-const addErrorLog = errorInfo => {
+const addError = errorInfo => {
   const {
     statusText,
     status,
-    request: { responseURL }
+    request: { responseURL },
+    data: { message }
   } = errorInfo
   let info = {
-    type: 'ajax',
     code: status,
     mes: statusText,
-    url: responseURL
+    url: responseURL,
+    message
   }
-  if (!responseURL.includes('save_error_logger')) store.dispatch('addErrorLog', info)
+  store.commit('app/addError', info)
 }
 
 class HttpRequest {
@@ -61,7 +62,7 @@ class HttpRequest {
       },
       error => {
         this.destroy(url)
-        addErrorLog(error.response)
+        addError(error.response)
         return Promise.reject(error)
       }
     )

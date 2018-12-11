@@ -121,8 +121,15 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setBreadCrumb', 'setTagNavList', 'addTag', 'setLocal']),
-    ...mapActions(['handleLogin']),
+    ...mapMutations({
+      setBreadCrumb: 'app/setBreadCrumb',
+      setTagNavList: 'app/setTagNavList',
+      addTag: 'app/addTag',
+      setLocal: 'app/setLocal'
+    }),
+    ...mapActions({
+      handleLogin: 'user/handleLogin'
+    }),
     turnToPage(route) {
       let { name, params, query } = {}
       if (typeof route === 'string') name = route

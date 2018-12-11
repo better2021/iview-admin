@@ -1,12 +1,17 @@
 <template>
   <div id="app">
+    <ErrorMsg/>
     <router-view/>
   </div>
 </template>
 
 <script>
+import ErrorMsg from '_c/error-msg'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    ErrorMsg
+  }
 }
 </script>
 
