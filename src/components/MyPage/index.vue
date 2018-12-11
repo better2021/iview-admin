@@ -57,8 +57,6 @@ export default {
   },
   methods: {
     changePageSize(page) {
-      // console.log('???');
-      // console.log(page, 'change');
       localStorage.setItem(`pageSize${this.$route.fullPath}${this.ikey}`, page);
       this.$emit('changePageSize', page);
     },

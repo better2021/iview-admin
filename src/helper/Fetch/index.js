@@ -6,11 +6,11 @@ let Fetch = (url, option = {}) => {
 
   option.headers = option.headers || {};
   option.headers['pl'] = 'admin';
-  option.headers['Authorization'] = `Bearer ${window.localStorage.getItem('token')}`;
+  option.headers['Authorization'] = window.localStorage.getItem('token');
 
   const m = (option.method || '').toLocaleLowerCase();
   // get query format
-  if (m == 'get') {
+  if (m === 'get') {
     if (option.query) {
       url = formatUrl(url, option.query);
     }

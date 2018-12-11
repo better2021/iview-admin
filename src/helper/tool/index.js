@@ -6,7 +6,7 @@ export const getCurrentWeek = handleDate.getCurrentWeek;
 export const getLastWeek = handleDate.getLastWeek;
 export const getCurrentMonth = handleDate.getCurrentMonth;
 export const getLastMonth = handleDate.getLastMonth;
-export const bytesToSize = handleDate.bytesToSize;
+
 import * as formatMath from './formatMath';
 
 export const MathAdd = formatMath.MathAdd;
@@ -87,20 +87,4 @@ export function isRepeat(name = 'default', time = 300) {
   let re = i - (isNaN(reData[name]) ? 0 : reData[name]);
   reData[name] = i;
   return re <= time;
-}
-
-// 彩种分类
-export function lotteryToTree(list) {
-  let handle = JSON.parse(JSON.stringify(list));
-  return handle
-    .sort((a, b) => a.pid - b.pid)
-    .reduce((a, b) => {
-      if (b.pid == 0) {
-        a[b.id] = b;
-        a[b.id].children = [];
-      } else if (a[b.pid]) {
-        a[b.pid].children.push(b);
-      }
-      return a;
-    }, {});
 }

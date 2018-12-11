@@ -7,7 +7,7 @@ function checkLocalStorage() {
     : false;
 }
 
-var local = {
+const local = {
   set(key, value) {
     if (checkLocalStorage()) {
       window.localStorage.setItem(key, value);

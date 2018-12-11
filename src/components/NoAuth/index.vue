@@ -1,7 +1,7 @@
 <template>
   <div id="NoAuth">
     <div class="card">
-      <img src="../../assets/img/noauth.png" alt="">
+      <img src="../../assets/img/noauth.png" alt>
       <div class="con">
         <p>抱歉，您无权限~</p>
         <p>抱歉，你暂无权限，请看看其他页面</p>

@@ -1,7 +1,7 @@
 // 浮点数相加
 export function MathAdd(a, b) {
   if (!a && !b) return '0';
-  var c, d, e;
+  let c, d, e;
   try {
     c = a.toString().split('.')[1].length;
   } catch (f) {
@@ -18,7 +18,7 @@ export function MathAdd(a, b) {
 // 浮点数相减
 export function MathSub(a, b) {
   if (!a && !b) return '0';
-  var c, d, e;
+  let c, d, e;
   try {
     c = a.toString().split('.')[1].length;
   } catch (f) {
@@ -35,7 +35,7 @@ export function MathSub(a, b) {
 // 浮点数相乘
 export function MathMul(a, b) {
   if (!a || !b) return '0';
-  var c = 0,
+  let c = 0,
     d = a.toString(),
     e = b.toString();
   try {
@@ -50,7 +50,7 @@ export function MathMul(a, b) {
 // 浮点数相除
 export function MathDiv(a, b) {
   if (!a || !b) return '0';
-  var c,
+  let c,
     d,
     e = 0,
     f = 0;
