@@ -1,4 +1,4 @@
-import Main from '@/components/main';
+import Main from '@/components/main'
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -27,7 +27,7 @@ export default [
   },
   {
     path: '/',
-    name: '_home',
+    name: 'home',
     redirect: '/home',
     component: Main,
     meta: {
@@ -44,18 +44,9 @@ export default [
           notCache: true,
           icon: 'md-home'
         },
-        component: () => import('@/view/single-page/home')
+        component: () => import('@/view/home')
       }
     ]
-  },
-  {
-    path: '',
-    name: 'doc',
-    meta: {
-      title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
-    }
   },
   {
     path: '/multilevel',
@@ -110,4 +101,4 @@ export default [
     },
     component: () => import('@/view/error-page/404.vue')
   }
-];
+]
