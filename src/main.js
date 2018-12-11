@@ -1,60 +1,46 @@
-import Vue from 'vue';
-import App from './App';
-import router from './router';
-import store from './vuex';
-import Fetch from './helper/Fetch';
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import store from './store'
+import iView from 'iview'
+import i18n from '@/locale'
+import config from '@/config'
+import importDirective from '@/directive'
+import installPlugin from '@/plugin'
+import 'iview/dist/styles/iview.css'
+import './index.less'
+import '@/assets/icons/iconfont.css'
+// 实际打包时应该不引入mock
+/* eslint-disable */
+if (process.env.NODE_ENV !== 'production') require('@/mock')
 
-import './assets/style/reset.less';
-import './assets/font/iconfont.css';
+Vue.use(iView, {
+  i18n: (key, value) => i18n.t(key, value)
+})
+/**
+ * @description 注册admin内置插件
+ */
+installPlugin(Vue)
+/**
+ * @description 生产环境关掉提示
+ */
+Vue.config.productionTip = false
+/**
+ * @description 全局注册应用配置
+ */
+Vue.prototype.$config = config
+/**
+ * 注册指令
+ */
+importDirective(Vue)
 
-import { setTitle, isRepeat } from './helper/tool';
-
-import iview from 'iview';
-import 'iview/dist/styles/iview.css';
-Vue.use(iview);
-
-Vue.prototype.setting = setting;
-Vue.prototype.Fetch = Fetch;
-Vue.config.productionTip = false;
-
-//图片预加载
-import VueLazyLoad from 'vue-lazyload';
-Vue.use(VueLazyLoad, {
-  error: require('./assets/img/error.png'),
-  loading: require('./assets/img/loading.gif')
-});
-
-//通过eventBus传值
-window.eventBus = new Vue();
-
-// 设置title
-setTitle(setting.name || '后台管理系统');
-
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  i18n,
   store,
-  components: { App },
-  template: '<App/>',
-  created() {
-    // 登录超时
-    Fetch.overTime = msg => {
-      if (isRepeat('overtime')) return false;
-      window.localStorage.removeItem('token');
-      this.$router.push('/login');
-    };
-    Fetch.otherLogin = msg => {
-      this.$Message.error(msg);
-      window.localStorage.removeItem('token');
-      this.$router.push('/login');
-    };
-    // 500
-    Fetch.systemError = msg => {
-      this.$Message.error(msg);
-    };
-    // other error
-    Fetch.otherError = msg => {
-      this.$Message.error('网络异常');
-    };
-  }
-});
+  render: h => h(App)
+})
