@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import store from './store'
 import iView from 'iview'
-import i18n from '@/locale'
 import config from '@/config'
 import installPlugin from '@/plugin'
 import axios from '@/libs/api.request'
@@ -13,9 +12,7 @@ import 'iview/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
 
-Vue.use(iView, {
-  i18n: (key, value) => i18n.t(key, value)
-})
+Vue.use(iView)
 
 // 注册admin内置插件
 installPlugin(Vue)
@@ -30,7 +27,6 @@ Vue.prototype.$axios = axios
 new Vue({
   el: '#app',
   router,
-  i18n,
   store,
   render: h => h(App)
 })

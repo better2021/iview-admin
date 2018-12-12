@@ -28,12 +28,6 @@
       <Header class="header-con">
         <HeaderBar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
           <User :user-info="userInfo"/>
-          <Language
-            v-if="$config.useI18n"
-            style="margin-right: 10px;"
-            :lang="local"
-            @on-lang-change="setLocal"
-          />
           <ErrorStore
             v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader"
             :has-read="hasReadErrorPage"
@@ -68,7 +62,6 @@ import HeaderBar from './components/HeaderBar'
 import TagsNav from './components/TagsNav'
 import User from './components/User'
 import FullScreen from './components/FullScreen'
-import Language from './components/Language'
 import ErrorStore from './components/ErrorStore'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
@@ -80,7 +73,6 @@ export default {
   components: {
     SideMenu,
     HeaderBar,
-    Language,
     TagsNav,
     FullScreen,
     ErrorStore,
@@ -141,8 +133,6 @@ export default {
       route: this.$store.state.app.homeRoute
     })
     this.setBreadCrumb(this.$route)
-    // 设置初始语言
-    this.setLocal(this.$i18n.locale)
     // 如果当前打开页面不在标签栏中，跳到homeName页
     if (!this.tagNavList.find(item => item.name === this.$route.name)) {
       this.$router.push({
