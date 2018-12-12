@@ -105,18 +105,21 @@ export default {
     },
     // 登录
     handleSubmit() {
-      this.$refs.loginForm.validate(async valid => {
-        if (valid) {
-          this.loading.login = true
-          await this.handleLogin({
-            form: this.form,
-            token: this.authcode.token
-          })
-          this.loading.login = false
-          this.$router.push({
-            name: this.$config.homeName
-          })
-        }
+      // this.$refs.loginForm.validate(async valid => {
+      //   if (valid) {
+      //     this.loading.login = true
+      //     await this.handleLogin({
+      //       form: this.form,
+      //       token: this.authcode.token
+      //     })
+      //     this.loading.login = false
+      //     this.$router.push({
+      //       name: this.$config.homeName
+      //     })
+      //   }
+      // })
+      this.$router.push({
+        name: this.$config.homeName
       })
     }
   }
@@ -126,4 +129,3 @@ export default {
 <style lang="less">
 @import './index.less';
 </style>
-
