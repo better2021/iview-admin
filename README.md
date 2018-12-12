@@ -5,6 +5,7 @@ vscode 安装插件 `Prettier、Vetur、ESlint`。
 配置全局 `setting.json`:
 
 ```json
+"vetur.validation.template": false,
 "prettier.disableLanguages": [],
 "prettier.eslintIntegration": true,
 "eslint.autoFixOnSave": true,
