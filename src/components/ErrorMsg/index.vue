@@ -1,5 +1,5 @@
 <template>
-  <div id="Msg" v-if="msgList.length" />
+  <div v-if="msgList.length" id="Msg"/>
 </template>
 <script>
 export default {

@@ -1,15 +1,31 @@
 <template>
-  <Dropdown ref="dropdown" :class="hideTitle ? '' : 'collased-menu-dropdown'" :placement="placement" :transfer="hideTitle" @on-click="handleClick">
-    <a class="drop-menu-a" :style="{textAlign: !hideTitle ? 'left' : ''}" type="text" @mouseover="handleMousemove($event, children)">
-      <CommonIcon :size="rootIconSize" :color="textColor" :type="parentItem.icon" />
+  <Dropdown
+    ref="dropdown"
+    :class="hideTitle ? '' : 'collased-menu-dropdown'"
+    :placement="placement"
+    :transfer="hideTitle"
+    @on-click="handleClick"
+  >
+    <a
+      class="drop-menu-a"
+      :style="{textAlign: !hideTitle ? 'left' : ''}"
+      type="text"
+      @mouseover="handleMousemove($event, children)"
+    >
+      <CommonIcon :size="rootIconSize" :color="textColor" :type="parentItem.icon"/>
       <span v-if="!hideTitle" class="menu-title">{{ showTitle(parentItem) }}</span>
       <Icon v-if="!hideTitle" style="float: right;" type="ios-arrow-forward" :size="16"/>
     </a>
     <DropdownMenu ref="dropdown" slot="list">
       <template v-for="child in children">
-        <CollapsedMenu v-if="showChildren(child)" :key="`drop-${child.name}`" :icon-size="iconSize" :parent-item="child" />
+        <CollapsedMenu
+          v-if="showChildren(child)"
+          :key="`drop-${child.name}`"
+          :icon-size="iconSize"
+          :parent-item="child"
+        />
         <DropdownItem v-else :key="`drop-${child.name}`" :name="child.name">
-          <CommonIcon :size="iconSize" :type="child.icon" />
+          <CommonIcon :size="iconSize" :type="child.icon"/>
           <span class="menu-title">{{ showTitle(child) }}</span>
         </DropdownItem>
       </template>
@@ -40,7 +56,10 @@ export default {
     }
   },
   mounted() {
-    const dropdown = findNodeUpperByClasses(this.$refs.dropdown.$el, ['ivu-select-dropdown', 'ivu-dropdown-transfer'])
+    const dropdown = findNodeUpperByClasses(this.$refs.dropdown.$el, [
+      'ivu-select-dropdown',
+      'ivu-dropdown-transfer'
+    ])
     if (dropdown) dropdown.style.overflow = 'visible'
   },
   methods: {

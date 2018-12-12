@@ -1,9 +1,9 @@
 <template>
   <div class="user-avator-dropdown">
     <Dropdown @on-click="handleClick">
-      <Avatar :src="userInfo.avatar || avatar" />
+      <Avatar :src="userInfo.avatar || avatar"/>
       <span class="user-name">{{ userInfo.username }}</span>
-      <Icon :size="18" type="md-arrow-dropdown" />
+      <Icon :size="18" type="md-arrow-dropdown"/>
       <DropdownMenu slot="list">
         <DropdownItem name="logout">退出登录</DropdownItem>
       </DropdownMenu>

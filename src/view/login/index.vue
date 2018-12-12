@@ -7,14 +7,14 @@
             <FormItem prop="username">
               <Input v-model="form.username" placeholder="请输入用户名">
                 <span slot="prepend">
-                  <Icon :size="16" type="ios-person" />
+                  <Icon :size="16" type="ios-person"/>
                 </span>
               </Input>
             </FormItem>
             <FormItem prop="password">
               <Input v-model="form.password" type="password" placeholder="请输入密码">
                 <span slot="prepend">
-                  <Icon :size="14" type="md-lock" />
+                  <Icon :size="14" type="md-lock"/>
                 </span>
               </Input>
             </FormItem>
@@ -22,7 +22,7 @@
               <Input v-model="form.authcode" class="authcode" placeholder="请输入验证码">
                 <div slot="prepend">
                   <div class="authcodeBox">
-                    <Spin v-if="loading.authcode" fix />
+                    <Spin v-if="loading.authcode" fix/>
                     <div class="con" @click="getAuthCode">
                       <img v-if="authcode.image" :src="authcode.image" alt>
                       <span v-else>点击获取验证码</span>

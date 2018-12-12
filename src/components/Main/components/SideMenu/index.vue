@@ -2,8 +2,8 @@
   <div class="side-menu-wrapper">
     <slot></slot>
     <Menu
-      ref="menu"
       v-show="!collapsed"
+      ref="menu"
       :active-name="activeName"
       :open-names="openedNames"
       :accordion="accordion"
@@ -13,50 +13,46 @@
     >
       <template v-for="item in menuList">
         <template v-if="item.children && item.children.length === 1">
-          <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></side-menu-item>
-          <menu-item
-            v-else
-            :name="getNameOrHref(item, true)"
-            :key="`menu-${item.children[0].name}`"
-          >
-            <common-icon :type="item.children[0].icon || ''"/>
+          <SideMenuItem v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></SideMenuItem>
+          <MenuItem v-else :key="`menu-${item.children[0].name}`" :name="getNameOrHref(item, true)">
+            <CommonIcon :type="item.children[0].icon || ''"/>
             <span>{{ showTitle(item.children[0]) }}</span>
-          </menu-item>
+          </MenuItem>
         </template>
         <template v-else>
-          <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></side-menu-item>
-          <menu-item v-else :name="getNameOrHref(item)" :key="`menu-${item.name}`">
-            <common-icon :type="item.icon || ''"/>
+          <SideMenuItem v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></SideMenuItem>
+          <MenuItem v-else :key="`menu-${item.name}`" :name="getNameOrHref(item)">
+            <CommonIcon :type="item.icon || ''"/>
             <span>{{ showTitle(item) }}</span>
-          </menu-item>
+          </MenuItem>
         </template>
       </template>
     </Menu>
-    <div class="menu-collapsed" v-show="collapsed" :list="menuList">
+    <div v-show="collapsed" class="menu-collapsed" :list="menuList">
       <template v-for="item in menuList">
-        <collapsed-menu
+        <CollapsedMenu
           v-if="item.children && item.children.length > 1"
-          @on-click="handleSelect"
+          :key="`drop-menu-${item.name}`"
           hide-title
           :root-icon-size="rootIconSize"
           :icon-size="iconSize"
           :theme="theme"
           :parent-item="item"
-          :key="`drop-menu-${item.name}`"
-        ></collapsed-menu>
+          @on-click="handleSelect"
+        ></CollapsedMenu>
         <Tooltip
-          transfer
           v-else
+          :key="`drop-menu-${item.name}`"
+          transfer
           :content="(item.meta && item.meta.title) || (item.children && item.children[0] && item.children[0].meta.title)"
           placement="right"
-          :key="`drop-menu-${item.name}`"
         >
           <a
-            @click="handleSelect(getNameOrHref(item, true))"
             class="drop-menu-a"
             :style="{textAlign: 'center'}"
+            @click="handleSelect(getNameOrHref(item, true))"
           >
-            <common-icon
+            <CommonIcon
               :size="rootIconSize"
               :color="textColor"
               :type="item.icon || (item.children && item.children[0].icon)"
@@ -75,11 +71,11 @@ import mixin from './mixin'
 
 export default {
   name: 'SideMenu',
-  mixins: [mixin],
   components: {
     SideMenuItem,
     CollapsedMenu
   },
+  mixins: [mixin],
   props: {
     menuList: {
       type: Array,
@@ -117,18 +113,6 @@ export default {
       openedNames: []
     }
   },
-  methods: {
-    handleSelect(name) {
-      this.$emit('on-select', name)
-    },
-    getOpenedNamesByActiveName(name) {
-      return this.$route.matched.map(item => item.name).filter(item => item !== name)
-    },
-    updateOpenName(name) {
-      if (name === this.$config.homeName) this.openedNames = []
-      else this.openedNames = this.getOpenedNamesByActiveName(name)
-    }
-  },
   computed: {
     textColor() {
       return this.theme === 'dark' ? '#fff' : '#495060'
@@ -150,6 +134,18 @@ export default {
   },
   mounted() {
     this.openedNames = getUnion(this.openedNames, this.getOpenedNamesByActiveName(name))
+  },
+  methods: {
+    handleSelect(name) {
+      this.$emit('on-select', name)
+    },
+    getOpenedNamesByActiveName(name) {
+      return this.$route.matched.map(item => item.name).filter(item => item !== name)
+    },
+    updateOpenName(name) {
+      if (name === this.$config.homeName) this.openedNames = []
+      else this.openedNames = this.getOpenedNamesByActiveName(name)
+    }
   }
 }
 </script>

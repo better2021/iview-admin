@@ -3,5 +3,6 @@
   "useTabs": false,
   "printWidth": 100,
   "tabWidth": 2,
-  "semi": false
+  "semi": false,
+  "bracketSpacing": true
 }

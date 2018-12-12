@@ -6,7 +6,7 @@
         <Icon :size="18" type="md-arrow-dropdown"/>
       </a>
       <DropdownMenu slot="list">
-        <DropdownItem v-for="(value, key) in localList" :name="key" :key="`lang-${key}`">{{ value }}</DropdownItem>
+        <DropdownItem v-for="(value, key) in localList" :key="`lang-${key}`" :name="key">{{ value }}</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </div>
@@ -16,7 +16,10 @@
 export default {
   name: 'Language',
   props: {
-    lang: String
+    lang: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {
@@ -32,14 +35,14 @@ export default {
       }
     }
   },
-  watch: {
-    lang(lang) {
-      this.$i18n.locale = lang
-    }
-  },
   computed: {
     title() {
       return this.langList[this.lang]
+    }
+  },
+  watch: {
+    lang(lang) {
+      this.$i18n.locale = lang
     }
   },
   methods: {

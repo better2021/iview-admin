@@ -1,21 +1,21 @@
 <template>
   <div class="header-bar">
-    <sider-trigger :collapsed="collapsed" icon="md-menu" @on-change="handleCollpasedChange"></sider-trigger>
-    <custom-bread-crumb show-icon style="margin-left: 30px;" :list="breadCrumbList"></custom-bread-crumb>
+    <SiderTrigger :collapsed="collapsed" icon="md-menu" @on-change="handleCollpasedChange"></SiderTrigger>
+    <CustomBreadCrumb show-icon style="margin-left: 30px;" :list="breadCrumbList"></CustomBreadCrumb>
     <div class="custom-content-con">
       <slot></slot>
     </div>
   </div>
 </template>
 <script>
-import siderTrigger from './SiderTrigger'
-import customBreadCrumb from './CustomBreadCrumb'
+import SiderTrigger from './SiderTrigger'
+import CustomBreadCrumb from './CustomBreadCrumb'
 import './index.less'
 export default {
   name: 'HeaderBar',
   components: {
-    siderTrigger,
-    customBreadCrumb
+    SiderTrigger,
+    CustomBreadCrumb
   },
   props: {
     collapsed: Boolean

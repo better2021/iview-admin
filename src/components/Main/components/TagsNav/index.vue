@@ -3,7 +3,7 @@
     <div class="close-con">
       <Dropdown transfer style="margin-top:7px;" @on-click="handleTagsOption">
         <Button size="small" type="text">
-          <Icon :size="18" type="ios-close-circle-outline" />
+          <Icon :size="18" type="ios-close-circle-outline"/>
         </Button>
         <DropdownMenu slot="list">
           <DropdownItem name="close-all">关闭所有</DropdownItem>
@@ -16,18 +16,16 @@
       :style="{left: contextMenuLeft + 'px', top: contextMenuTop + 'px'}"
       class="contextmenu"
     >
-      <li v-for="(item, key) of menuList" :key="key" @click="handleTagsOption(key)">
-        {{ item }}
-      </li>
+      <li v-for="(item, key) of menuList" :key="key" @click="handleTagsOption(key)">{{ item }}</li>
     </ul>
     <div class="btn-con left-btn">
       <Button type="text" @click="handleScroll(240)">
-        <Icon :size="18" type="ios-arrow-back" />
+        <Icon :size="18" type="ios-arrow-back"/>
       </Button>
     </div>
     <div class="btn-con right-btn">
       <Button type="text" @click="handleScroll(-240)">
-        <Icon :size="18" type="ios-arrow-forward" />
+        <Icon :size="18" type="ios-arrow-forward"/>
       </Button>
     </div>
     <div
@@ -51,8 +49,8 @@
             @click.native="handleClick(item)"
             @contextmenu.prevent.native="contextMenu(item, $event)"
           >
-            {{ showTitleInside(item) }}
-          </Tag>
+{{ showTitleInside(item) }}
+</Tag>
         </TransitionGroup>
       </div>
     </div>

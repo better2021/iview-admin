@@ -1,21 +1,21 @@
 <template>
   <Layout style="height: 100%" class="main">
     <Sider
+      v-model="collapsed"
       hide-trigger
       collapsible
       :width="256"
       :collapsed-width="64"
-      v-model="collapsed"
       class="left-sider"
       :style="{overflow: 'hidden'}"
     >
       <SideMenu
-        accordion
         ref="sideMenu"
+        :menu-list="menuList"
+        accordion
         :active-name="$route.name"
         :collapsed="collapsed"
         @on-select="turnToPage"
-        :menu-list="menuList"
       >
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <div class="logo-con">
@@ -27,19 +27,19 @@
     <Layout>
       <Header class="header-con">
         <HeaderBar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <user :user-info="userInfo"/>
-          <language
+          <User :user-info="userInfo"/>
+          <Language
             v-if="$config.useI18n"
-            @on-lang-change="setLocal"
             style="margin-right: 10px;"
             :lang="local"
+            @on-lang-change="setLocal"
           />
           <ErrorStore
             v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader"
             :has-read="hasReadErrorPage"
             :count="errorList.length"
-          ></ErrorStore>
-          <fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>
+          />
+          <FullScreen v-model="isFullscreen" style="margin-right: 10px;"/>
         </HeaderBar>
       </Header>
       <Content class="main-content-con">
@@ -53,9 +53,9 @@
             />
           </div>
           <Content class="content-wrapper">
-            <keep-alive :include="cacheList">
-              <router-view/>
-            </keep-alive>
+            <KeepAlive :include="cacheList">
+              <RouterView/>
+            </KeepAlive>
           </Content>
         </Layout>
       </Content>
@@ -67,7 +67,7 @@ import SideMenu from './components/SideMenu'
 import HeaderBar from './components/HeaderBar'
 import TagsNav from './components/TagsNav'
 import User from './components/User'
-import Fullscreen from './components/FullScreen'
+import FullScreen from './components/FullScreen'
 import Language from './components/Language'
 import ErrorStore from './components/ErrorStore'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
@@ -82,7 +82,7 @@ export default {
     HeaderBar,
     Language,
     TagsNav,
-    Fullscreen,
+    FullScreen,
     ErrorStore,
     User
   },
@@ -118,6 +118,36 @@ export default {
     },
     hasReadErrorPage() {
       return this.$store.state.app.hasReadErrorPage
+    }
+  },
+  watch: {
+    $route(newRoute) {
+      const { name, query, params, meta } = newRoute
+      this.addTag({
+        route: { name, query, params, meta },
+        type: 'push'
+      })
+      this.setBreadCrumb(newRoute)
+      this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
+      this.$refs.sideMenu.updateOpenName(newRoute.name)
+    }
+  },
+  mounted() {
+    /**
+     * @description 初始化设置面包屑导航和标签导航
+     */
+    this.setTagNavList()
+    this.addTag({
+      route: this.$store.state.app.homeRoute
+    })
+    this.setBreadCrumb(this.$route)
+    // 设置初始语言
+    this.setLocal(this.$i18n.locale)
+    // 如果当前打开页面不在标签栏中，跳到homeName页
+    if (!this.tagNavList.find(item => item.name === this.$route.name)) {
+      this.$router.push({
+        name: this.$config.homeName
+      })
     }
   },
   methods: {
@@ -164,36 +194,6 @@ export default {
     },
     handleClick(item) {
       this.turnToPage(item)
-    }
-  },
-  watch: {
-    $route(newRoute) {
-      const { name, query, params, meta } = newRoute
-      this.addTag({
-        route: { name, query, params, meta },
-        type: 'push'
-      })
-      this.setBreadCrumb(newRoute)
-      this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
-      this.$refs.sideMenu.updateOpenName(newRoute.name)
-    }
-  },
-  mounted() {
-    /**
-     * @description 初始化设置面包屑导航和标签导航
-     */
-    this.setTagNavList()
-    this.addTag({
-      route: this.$store.state.app.homeRoute
-    })
-    this.setBreadCrumb(this.$route)
-    // 设置初始语言
-    this.setLocal(this.$i18n.locale)
-    // 如果当前打开页面不在标签栏中，跳到homeName页
-    if (!this.tagNavList.find(item => item.name === this.$route.name)) {
-      this.$router.push({
-        name: this.$config.homeName
-      })
     }
   }
 }

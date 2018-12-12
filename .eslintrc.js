@@ -262,6 +262,9 @@ module.exports = {
     ],
     'array-bracket-spacing': [2, 'never'],
     'no-useless-computed-key': 0,
-    'vue/singleline-html-element-content-newline': 0
+    'vue/singleline-html-element-content-newline': 0,
+    'vue/html-indent': 0,
+    'vue/html-closing-bracket-spacing': 0,
+    'vue/html-self-closing': 0
   }
 }
