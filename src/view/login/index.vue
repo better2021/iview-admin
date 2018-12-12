@@ -39,8 +39,8 @@
                 :loading="loading.login"
                 @click="handleSubmit"
               >
-{{ loading.login ? '登录中' : '登录' }}
-</Button>
+              {{ loading.login ? '登录中' : '登录' }}
+              </Button>
             </FormItem>
           </Form>
         </div>

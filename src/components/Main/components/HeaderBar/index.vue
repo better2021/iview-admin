@@ -1,7 +1,7 @@
 <template>
   <div class="header-bar">
-    <SiderTrigger :collapsed="collapsed" icon="md-menu" @on-change="handleCollpasedChange"></SiderTrigger>
-    <CustomBreadCrumb show-icon style="margin-left: 30px;" :list="breadCrumbList"></CustomBreadCrumb>
+    <SiderTrigger :collapsed="collapsed" icon="md-menu" @on-change="handleCollpasedChange"/>
+    <CustomBreadCrumb show-icon style="margin-left: 30px;" :list="breadCrumbList"/>
     <div class="custom-content-con">
       <slot></slot>
     </div>
