@@ -265,6 +265,7 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 0,
     'vue/html-indent': 0,
     'vue/html-closing-bracket-spacing': 0,
-    'vue/html-self-closing': 0
+    'vue/html-self-closing': 0,
+    'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }]
   }
 }

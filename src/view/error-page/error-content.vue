@@ -20,9 +20,18 @@ export default {
     backBtnGroup
   },
   props: {
-    code: String,
-    desc: String,
-    src: String
+    code: {
+      type: String,
+      default: ''
+    },
+    desc: {
+      type: String,
+      default: ''
+    },
+    src: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>
