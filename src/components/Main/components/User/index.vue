@@ -5,6 +5,7 @@
       <span class="user-name">{{ userInfo.username }}</span>
       <Icon :size="18" type="md-arrow-dropdown"/>
       <DropdownMenu slot="list">
+        <DropdownItem name="changepw">修改密码</DropdownItem>
         <DropdownItem name="logout">退出登录</DropdownItem>
       </DropdownMenu>
     </Dropdown>
@@ -41,9 +42,10 @@ export default {
       switch (name) {
         case 'logout':
           this.handleLogOut('')
-          this.$router.push({
-            name: 'login'
-          })
+          this.$router.push({ name: 'login' })
+          break
+        case 'changepw':
+          console.log('修改密码')
           break
       }
     }

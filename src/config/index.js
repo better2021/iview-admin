@@ -17,7 +17,7 @@ export default {
    * @description api请求基础路径
    */
   baseUrl: {
-    dev: 'http://admin-api.tgtestv.com',
+    dev: 'http://localhost:3000',
     pro: 'https://produce.com'
   },
   /**
