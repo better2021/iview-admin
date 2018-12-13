@@ -100,6 +100,7 @@ export default {
           token: res.data.token
         }
       } else {
+        console.log(res.message)
         this.$Message.error(res.message)
       }
     },
